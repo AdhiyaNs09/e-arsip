@@ -9,7 +9,9 @@
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title">Data Siswa</h5>
-            <a class="btn" href="/student/create" style="background: #f6f9ff; border: none; color: #4154f1;">Tambah Data Siswa</a>
+            <?php if (in_groups('admin')) : ?>
+              <a class="btn" href="/student/create" style="background: #f6f9ff; border: none; color: #4154f1;">Tambah Data Siswa</a>
+            <?php endif; ?>
           </div>
 
           <?php if (session()->getFlashdata('message')) : ?>
@@ -33,8 +35,9 @@
                 <th>Kelas</th>
                 <th>Alamat</th>
                 <th>Kontak</th>
-                <th>Aksi</th>
-
+                <?php if (in_groups('admin')) : ?>
+                  <th>Aksi</th>
+                <?php endif; ?>
               </tr>
             </thead>
             <tbody>
@@ -46,13 +49,15 @@
                   <td><?= $student['nama_kelas']; ?></td>
                   <td><?= $student['alamat']; ?></td>
                   <td><?= $student['kontak']; ?></td>
-                  <td class="d-flex">
-                    <a class="btn btn-primary mx-1" href="/student/edit/<?= $student['siswa_id']; ?>">Edit</a>
-                    <form class="mx-1" action="/student/delete/<?= $student['siswa_id']; ?>" method="post" style="display:inline;">
-                      <?= csrf_field() ?>
-                      <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
-                    </form>
-                  </td>
+                  <?php if (in_groups('admin')) : ?>
+                    <td class="d-flex">
+                      <a class="btn btn-primary mx-1" href="/student/edit/<?= $student['siswa_id']; ?>">Edit</a>
+                      <form class="mx-1" action="/student/delete/<?= $student['siswa_id']; ?>" method="post" style="display:inline;">
+                        <?= csrf_field() ?>
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                      </form>
+                    </td>
+                  <?php endif; ?>
                 </tr>
               <?php endforeach; ?>
             </tbody>

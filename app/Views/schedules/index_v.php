@@ -9,7 +9,9 @@
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title">Jadwal Pelajaran</h5>
-            <a class="btn" href="/schedule/create" style="background: #f6f9ff; border: none; color: #4154f1;">Tambah Data Jadwal</a>
+            <?php if (in_groups('admin')) : ?>
+              <a class="btn" href="/schedule/create" style="background: #f6f9ff; border: none; color: #4154f1;">Tambah Data Jadwal</a>
+            <?php endif; ?>
           </div>
 
           <?php if (session()->getFlashdata('message')) : ?>
@@ -34,7 +36,9 @@
                 <th>Hari</th>
                 <th>Jam Mulai</th>
                 <th>Jam Akhir</th>
-                <th>Aksi</th>
+                <?php if (in_groups('admin')) : ?>
+                  <th>Aksi</th>
+                <?php endif; ?>
               </tr>
             </thead>
             <tbody>
@@ -47,13 +51,15 @@
                   <td><?= $j['hari'] ?></td>
                   <td><?= $j['jam_mulai']->format('H:i') ?></td>
                   <td><?= $j['jam_selesai']->format('H:i') ?></td>
-                  <td>
-                    <a class="btn btn-primary" href="/schedule/edit/<?= $j['jadwal_id'] ?>">Edit</a>
-                    <form action="/schedule/delete/<?= $j['jadwal_id'] ?>" method="post" style="display:inline;">
-                      <input type="hidden" name="_method" value="DELETE">
-                      <button class="btn btn-danger" type="submit">Hapus</button>
-                    </form>
-                  </td>
+                  <?php if (in_groups('admin')) : ?>
+                    <td>
+                      <a class="btn btn-primary" href="/schedule/edit/<?= $j['jadwal_id'] ?>">Edit</a>
+                      <form action="/schedule/delete/<?= $j['jadwal_id'] ?>" method="post" style="display:inline;">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-danger" type="submit">Hapus</button>
+                      </form>
+                    </td>
+                  <?php endif; ?>
                 </tr>
               <?php endforeach; ?>
             </tbody>

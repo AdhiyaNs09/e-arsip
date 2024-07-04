@@ -4,7 +4,7 @@
   <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
-      <a class="nav-link collapsed " id="dashboard-link" href="/dashboard">
+      <a class="nav-link collapsed " id="dashboard-link" href="/">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
@@ -79,14 +79,16 @@
       </ul>
     </li>
 
-    <li class="nav-heading">Manajemen Pengguna</li>
+    <?php if (in_groups('admin')) : ?>
+      <li class="nav-heading">Manajemen Pengguna</li>
 
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="roles">
-        <i class="bi bi-person"></i>
-        <span>Manajemen Pengguna</span>
-      </a>
-    </li><!-- End role Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="roles">
+          <i class="bi bi-person"></i>
+          <span>Manajemen Pengguna</span>
+        </a>
+      </li><!-- End role Page Nav -->
+    <?php endif; ?>
 
   </ul>
 

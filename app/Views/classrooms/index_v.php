@@ -9,7 +9,9 @@
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title">Data Kelas</h5>
-            <a class="btn" href="/classroom/create" style="background: #f6f9ff; border: none; color: #4154f1;">Tambah Data Kelas</a>
+            <?php if (in_groups('admin')) : ?>
+              <a class="btn" href="/classroom/create" style="background: #f6f9ff; border: none; color: #4154f1;">Tambah Data Kelas</a>
+            <?php endif; ?>
           </div>
           <!-- Table with stripped rows -->
           <table class="table datatable">
@@ -19,7 +21,9 @@
                 <th>Nama Kelas</th>
                 <th>Wali Kelas</th>
                 <th>Ruang Kelas</th>
-                <th>Aksi</th>
+                <?php if (in_groups('admin')) : ?>
+                  <th>Aksi</th>
+                <?php endif; ?>
               </tr>
             </thead>
             <tbody>
@@ -29,14 +33,16 @@
                   <td><?= $classroom['nama_kelas']; ?></td>
                   <td><?= $classroom['wali_kelas']; ?></td>
                   <td><?= $classroom['ruang_kelas']; ?></td>
-                  <td class="d-flex">
-                    <a class="btn btn-primary mx-1" href="/classroom/edit/<?= $classroom['kelas_id']; ?>">Edit</a>
-                    <form class="mx-1" action="/classroom/delete/<?= $classroom['kelas_id']; ?>" method="post" style="display:inline;">
-                      <?= csrf_field() ?>
-                      <input type="hidden" name="_method" value="DELETE">
-                      <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
-                    </form>
-                  </td>
+                  <?php if (in_groups('admin')) : ?>
+                    <td class="d-flex">
+                      <a class="btn btn-primary mx-1" href="/classroom/edit/<?= $classroom['kelas_id']; ?>">Edit</a>
+                      <form class="mx-1" action="/classroom/delete/<?= $classroom['kelas_id']; ?>" method="post" style="display:inline;">
+                        <?= csrf_field() ?>
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                      </form>
+                    </td>
+                  <?php endif; ?>
                 </tr>
               <?php endforeach; ?>
             </tbody>
