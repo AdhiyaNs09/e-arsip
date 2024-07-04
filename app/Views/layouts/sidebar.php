@@ -83,7 +83,7 @@
       <li class="nav-heading">Manajemen Pengguna</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="roles">
+        <a class="nav-link collapsed" href="user">
           <i class="bi bi-person"></i>
           <span>Manajemen Pengguna</span>
         </a>

@@ -10,9 +10,9 @@
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title">Tambah Data</h5>
           </div>
-          
+
           <!-- Form Tambah Data Guru -->
-          <form action="/teacher/store" method="post">
+          <form action="/teacher" method="post">
             <?= csrf_field() ?>
 
             <?php $errors = session()->getFlashdata('errors'); ?>

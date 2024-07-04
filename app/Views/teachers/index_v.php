@@ -10,7 +10,7 @@
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title">Data Guru</h5>
             <?php if (in_groups('admin')) : ?>
-              <a class="btn" href="/teacher/create" style="background: #f6f9ff; border: none; color: #4154f1;">Tambah Data Guru</a>
+              <a class="btn" href="/teacher/new" style="background: #f6f9ff; border: none; color: #4154f1;">Tambah Data Guru</a>
             <?php endif; ?>
           </div>
 
@@ -49,8 +49,8 @@
                   <td><?= $teacher['kontak']; ?></td>
                   <?php if (in_groups('admin')) : ?>
                     <td class="d-flex">
-                      <a class="btn btn-primary mx-1" href="/teacher/edit/<?= $teacher['guru_id']; ?>">Edit</a>
-                      <form class="mx-1" action="/teacher/delete/<?= $teacher['guru_id']; ?>" method="post" style="display:inline;">
+                      <a class="btn btn-primary mx-1" href="/teacher/<?= $teacher['guru_id']; ?>/edit">Edit</a>
+                      <form class="mx-1" action="/teacher/<?= $teacher['guru_id']; ?>" method="post" style="display:inline;">
                         <?= csrf_field() ?>
                         <input type="hidden" name="_method" value="DELETE">
                         <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>

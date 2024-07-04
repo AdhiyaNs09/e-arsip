@@ -21,7 +21,7 @@ class ClassroomController extends BaseController
         return view("classrooms/index_v", $data);
     }
 
-    public function create()
+    public function new()
     {
         $data = [
             'title' => 'Form Tambah Data Kelas'
@@ -29,15 +29,15 @@ class ClassroomController extends BaseController
         return view('classrooms/create_v', $data);
     }
 
-    public function store()
-    {                    
+    public function create()
+    {
         $data = [
             'nama_kelas' => $this->request->getPost('nama_kelas'),
             'wali_kelas' => $this->request->getPost('wali_kelas'),
             'ruang_kelas' => $this->request->getPost('ruang_kelas')
         ];
         //validasi
-        if($this->classroomModel->save($data) === false){
+        if ($this->classroomModel->save($data) === false) {
             return redirect()->back()->withInput()->with('errors', $this->classroomModel->errors());
         }
         return redirect()->to('/classroom');
@@ -54,14 +54,14 @@ class ClassroomController extends BaseController
     }
 
     public function update($id)
-    {                
+    {
         $data = [
             'kelas_id' => $id,
             'nama_kelas' => $this->request->getVar('nama_kelas'),
             'wali_kelas' => $this->request->getVar('wali_kelas'),
             'ruang_kelas' => $this->request->getVar('ruang_kelas')
         ];
-        if($this->classroomModel->save($data) === false){
+        if ($this->classroomModel->save($data) === false) {
             return redirect()->back()->withInput()->with('errors', $this->classroomModel->errors());
         }
         return redirect()->to('/classroom');

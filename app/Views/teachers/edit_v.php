@@ -10,9 +10,9 @@
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title">Edit Data</h5>
           </div>
-          
+
           <!-- Form Tambah Data Guru -->
-          <form action="/teacher/update/<?= $teachers['guru_id']; ?>" method="post">
+          <form action="/teacher/<?= $teachers['guru_id']; ?>" method="post">
             <?= csrf_field() ?>
             <input type="hidden" name="_method" value="PUT">
 

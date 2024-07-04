@@ -27,7 +27,7 @@ class ScheduleController extends BaseController
         return view('schedules/index_v', $data);
     }
 
-    public function create()
+    public function new()
     {
         $data = [
             'title' => 'Form Tambah Data Jadwal Pelajaran',
@@ -38,7 +38,7 @@ class ScheduleController extends BaseController
         return view('schedules/create_v', $data);
     }
 
-    public function store()
+    public function create()
     {
         $data = [
             'kelas_id' => $this->request->getPost('kelas_id'),

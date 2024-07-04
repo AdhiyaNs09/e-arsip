@@ -23,7 +23,7 @@ class StudentController extends BaseController
         return view('students/index_v', $data);
     }
 
-    public function create()
+    public function new()
     {
         $data = [
             'title' => 'Form Tambah Data Siswa',
@@ -32,7 +32,7 @@ class StudentController extends BaseController
         return view('students/create_v', $data);
     }
 
-    public function store()
+    public function create()
     {
         $data = [
             'nama_siswa' => $this->request->getPost('nama_siswa'),

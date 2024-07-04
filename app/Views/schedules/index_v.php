@@ -10,7 +10,7 @@
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title">Jadwal Pelajaran</h5>
             <?php if (in_groups('admin')) : ?>
-              <a class="btn" href="/schedule/create" style="background: #f6f9ff; border: none; color: #4154f1;">Tambah Data Jadwal</a>
+              <a class="btn" href="/schedule/new" style="background: #f6f9ff; border: none; color: #4154f1;">Tambah Data Jadwal</a>
             <?php endif; ?>
           </div>
 
@@ -53,8 +53,8 @@
                   <td><?= $j['jam_selesai']->format('H:i') ?></td>
                   <?php if (in_groups('admin')) : ?>
                     <td>
-                      <a class="btn btn-primary" href="/schedule/edit/<?= $j['jadwal_id'] ?>">Edit</a>
-                      <form action="/schedule/delete/<?= $j['jadwal_id'] ?>" method="post" style="display:inline;">
+                      <a class="btn btn-primary" href="/schedule/<?= $j['jadwal_id'] ?>/edit">Edit</a>
+                      <form action="/schedule/<?= $j['jadwal_id'] ?>" method="post" style="display:inline;">
                         <input type="hidden" name="_method" value="DELETE">
                         <button class="btn btn-danger" type="submit">Hapus</button>
                       </form>

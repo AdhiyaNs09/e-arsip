@@ -11,7 +11,7 @@
             <h5 class="card-title">Tambah Data</h5>
           </div>
           <!-- Table with stripped rows -->
-          <form action="/classroom/store" method="post">
+          <form action="/classroom" method="post">
             <?= csrf_field() ?>
             <?php $errors = session()->getFlashdata('errors'); ?>
             

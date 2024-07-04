@@ -22,4 +22,6 @@ $routes->group('', ['filter' => 'role:admin, user'], function ($routes) {
   $routes->resource('classroom', ['controller' => 'ClassroomController']);
   $routes->resource('study', ['controller' => 'StudyController']);
   $routes->resource('schedule', ['controller' => 'ScheduleController']);
+  $routes->resource('document', ['controller' => 'DocumentController']);
+  $routes->resource('user', ['controller' => 'UserController']);
 });

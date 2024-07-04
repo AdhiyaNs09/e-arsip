@@ -22,26 +22,34 @@ class TeacherController extends BaseController
         ];
         return view('teachers/index_v', $data);
     }
-    public function create()
+
+    public function new()
     {
+        if (!in_groups('admin')) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        };
 
         $data = [
             'title' => 'Form Tambah Data Guru',
         ];
         return view('teachers/create_v', $data);
     }
-    public function store()
+    public function create()
     {
+        if (!in_groups('admin')) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        };
+
         $data = [
             'nama_guru' => $this->request->getPost('nama_guru'),
             'nip' => $this->request->getPost('nip'),
             'alamat' => $this->request->getPost('alamat'),
             'kontak' => $this->request->getPost('kontak')
         ];
-        if($this->teacherModel->save($data) === false){
+        if ($this->teacherModel->save($data) === false) {
             return redirect()->back()->withInput()->with('errors', $this->teacherModel->errors());
-        }
-        
+        };
+
         return redirect()->to(site_url('teacher'))->with('message', 'Data guru berhasil ditambahkan');
     }
 
@@ -49,6 +57,9 @@ class TeacherController extends BaseController
     public function edit($id)
     {
 
+        if (!in_groups('admin')) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        };
         $data = [
             'title' => 'Form Edit Data guru',
             'teachers' => $this->teacherModel->getGuru($id),
@@ -59,6 +70,10 @@ class TeacherController extends BaseController
 
     public function update($id)
     {
+        if (!in_groups('admin')) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        };
+
         $data = [
             'nama_guru' => $this->request->getPost('nama_guru'),
             'nip' => $this->request->getPost('nip'),
@@ -75,7 +90,11 @@ class TeacherController extends BaseController
 
     public function delete($id)
     {
-        $this->teacherModel->delete($id);        
+        if (!in_groups('admin')) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        };
+
+        $this->teacherModel->delete($id);
         return redirect()->to('/teacher')->with('message', 'Data guru berhasil dihapus');
     }
 }

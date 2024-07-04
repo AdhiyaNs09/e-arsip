@@ -10,9 +10,21 @@
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title">Data Kelas</h5>
             <?php if (in_groups('admin')) : ?>
-              <a class="btn" href="/classroom/create" style="background: #f6f9ff; border: none; color: #4154f1;">Tambah Data Kelas</a>
+              <a class="btn" href="/classroom/new" style="background: #f6f9ff; border: none; color: #4154f1;">Tambah Data Kelas</a>
             <?php endif; ?>
           </div>
+
+          <?php if (session()->getFlashdata('message')) : ?>
+            <div class="alert alert-success" role="alert">
+              <?= session()->getFlashdata('message'); ?>
+            </div>
+            <script>
+              setTimeout(function() {
+                document.querySelector('.alert').remove();
+              }, 2000);
+            </script>
+          <?php endif; ?>
+
           <!-- Table with stripped rows -->
           <table class="table datatable">
             <thead>
@@ -35,8 +47,8 @@
                   <td><?= $classroom['ruang_kelas']; ?></td>
                   <?php if (in_groups('admin')) : ?>
                     <td class="d-flex">
-                      <a class="btn btn-primary mx-1" href="/classroom/edit/<?= $classroom['kelas_id']; ?>">Edit</a>
-                      <form class="mx-1" action="/classroom/delete/<?= $classroom['kelas_id']; ?>" method="post" style="display:inline;">
+                      <a class="btn btn-primary mx-1" href="/classroom/<?= $classroom['kelas_id']; ?>/edit">Edit</a>
+                      <form class="mx-1" action="/classroom/<?= $classroom['kelas_id']; ?>" method="post" style="display:inline;">
                         <?= csrf_field() ?>
                         <input type="hidden" name="_method" value="DELETE">
                         <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>

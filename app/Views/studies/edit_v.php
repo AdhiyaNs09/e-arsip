@@ -11,7 +11,7 @@
             <h5 class="card-title">Edit Data</h5>
           </div>
           <!-- Table with stripped rows -->
-          <form action="/study/update/<?= $studies['mapel_id']; ?>" method="post">
+          <form action="/study/<?= $studies['mapel_id']; ?>" method="post">
             <?= csrf_field() ?>
             <input type="hidden" name="_method" value="PUT">
             <?php $errors = session()->getFlashdata('errors'); ?>

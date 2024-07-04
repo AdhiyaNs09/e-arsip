@@ -13,7 +13,7 @@
           <!-- Table with stripped rows -->
 
 
-          <form action="/classroom/update/<?= $classroom['kelas_id']; ?>" method="post">
+          <form action="/classroom/<?= $classroom['kelas_id']; ?>" method="post">
             <?= csrf_field() ?>
             <input type="hidden" name="_method" value="PUT">
             <?php $errors = session()->getFlashdata('errors'); ?>

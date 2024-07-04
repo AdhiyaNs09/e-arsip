@@ -15,7 +15,7 @@ class StudyController extends BaseController
         $this->teacherModel = model("Teacher");
     }
     public function index()
-    {        
+    {
         $data = [
             'title' => 'Daftar Mata Pelajaran',
             'studies' => $this->studyModel->getMapelWithGuru(),
@@ -23,7 +23,7 @@ class StudyController extends BaseController
         return view('studies/index_v', $data);
     }
 
-    public function create()
+    public function new()
     {
         $data = [
             'title' => 'Form Tambah Data Mata Pelajaran',
@@ -32,13 +32,13 @@ class StudyController extends BaseController
         return view('studies/create_v', $data);
     }
 
-    public function store()
+    public function create()
     {
-        $data = [            
+        $data = [
             'nama_mapel' => $this->request->getPost('nama_mapel'),
             'guru_id' => $this->request->getPost('guru_id'),
         ];
-        if($this->studyModel->save($data) === false){
+        if ($this->studyModel->save($data) === false) {
             return redirect()->back()->withInput()->with('errors', $this->studyModel->errors());
         }
         return redirect()->to('/study');
@@ -56,12 +56,12 @@ class StudyController extends BaseController
 
     public function update($id)
     {
-        $data = [            
+        $data = [
             'mapel_id' => $id,
             'nama_mapel' => $this->request->getPost('nama_mapel'),
             'guru_id' => $this->request->getPost('guru_id'),
         ];
-        if($this->studyModel->save($data) === false){
+        if ($this->studyModel->save($data) === false) {
             return redirect()->back()->withInput()->with('errors', $this->studyModel->errors());
         }
         return redirect()->to('/study')->with('message', 'Data mata pelajaran berhasil diperbarui');

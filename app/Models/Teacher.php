@@ -48,6 +48,4 @@ class Teacher extends Model
 
         return $this->find($id);
     }
-
-    
 }

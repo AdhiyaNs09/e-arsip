@@ -12,7 +12,7 @@
           </div>
 
           <!-- Table with stripped rows -->
-          <form action="/student/store" method="post">
+          <form action="/student" method="post">
             <?= csrf_field() ?>
             <?php $errors = session()->getFlashdata('errors'); ?>
 

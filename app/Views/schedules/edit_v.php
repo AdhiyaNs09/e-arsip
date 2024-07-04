@@ -12,7 +12,7 @@
           </div>
 
           <!-- Table with stripped rows -->
-          <form action="/schedule/update/<?= $schedules['jadwal_id']; ?>" method="post">
+          <form action="/schedule/<?= $schedules['jadwal_id']; ?>" method="post">
             <?= csrf_field() ?>
             <input type="hidden" name="_method" value="PUT">
             <?php $errors = session()->getFlashdata('errors'); ?>

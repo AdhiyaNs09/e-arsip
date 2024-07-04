@@ -10,7 +10,7 @@
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title">Data Siswa</h5>
             <?php if (in_groups('admin')) : ?>
-              <a class="btn" href="/student/create" style="background: #f6f9ff; border: none; color: #4154f1;">Tambah Data Siswa</a>
+              <a class="btn" href="/student/new" style="background: #f6f9ff; border: none; color: #4154f1;">Tambah Data Siswa</a>
             <?php endif; ?>
           </div>
 
@@ -51,9 +51,10 @@
                   <td><?= $student['kontak']; ?></td>
                   <?php if (in_groups('admin')) : ?>
                     <td class="d-flex">
-                      <a class="btn btn-primary mx-1" href="/student/edit/<?= $student['siswa_id']; ?>">Edit</a>
-                      <form class="mx-1" action="/student/delete/<?= $student['siswa_id']; ?>" method="post" style="display:inline;">
+                      <a class="btn btn-primary mx-1" href="/student/<?= $student['siswa_id']; ?>/edit">Edit</a>
+                      <form class="mx-1" action="/student/<?= $student['siswa_id']; ?>" method="post" style="display:inline;">
                         <?= csrf_field() ?>
+                        <input type="hidden" name="_method" value="DELETE">
                         <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
                       </form>
                     </td>
